@@ -9,6 +9,7 @@
 import java.awt.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
+
 public class TestPicture17
 {
 
@@ -19,7 +20,7 @@ public class TestPicture17
   public static void main(String[] args)
   {
       //opens picture using a dialog box
-      /**/
+     /* 
      String fileName = FileChooser.pickAFile();
      Picture pictObj = new Picture(fileName);
      pictObj.explore();
@@ -28,6 +29,7 @@ public class TestPicture17
      //Picture apic = new Picture("C:\\Users\\khayes\\Favorites\\Documents\APCS- Java\chap03\Curriclum 2013\Picture Color labs\images\\beach.jpg");
      
      //relative path
+     /**/
      Picture apic = new Picture("images\\beach.jpg");
      Picture ferris1 = new Picture("images/2000 ferris wheel2.jpg");
      Picture ferris2 = new Picture("images/2000 ferris wheel2.jpg");
@@ -114,7 +116,24 @@ final double  FACTOR = .5;
 
   /**/ 
     //write/save a picture as a file
-    ferris1.write("images/ferris11.jpg");
+    
+
+    //ADJUST RED
+    for (Pixel pixelObj : pixels)
+    {
+
+        //get the redvalue
+        int value = pixelObj.getRed();
+        
+        //decrease the red value by 50%
+        int newRed = (int)(value*0.25);
+
+        //set the red value of the current pixel to the new value
+        pixelObj.setRed(newRed);
+
+    }
+    ferris1.explore();
+    ferris1.write("images/ferris1.jpg");
 
     /**/
   }//main
