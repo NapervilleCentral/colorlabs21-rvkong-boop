@@ -1,9 +1,8 @@
 
 /**
- * Write a description of class SheparFaireyLab here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Make myself colourful
+ * Ryan Kong
+ * 11/12/2025
  */
 import java.awt.*;
 import java.util.*;

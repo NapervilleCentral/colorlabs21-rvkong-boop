@@ -31,30 +31,48 @@ public class TestPicture17
      //relative path
      /**/
      Picture apic = new Picture("images\\beach.jpg");
-     Picture ferris1 = new Picture("images/2000 ferris wheel2.jpg");
-     Picture ferris2 = new Picture("images/2000 ferris wheel2.jpg");
-     Picture ferris3 = new Picture("images/2000 ferris wheel2.jpg");
+     Picture ferris1 = new Picture("images/snowman.jpg");
+     Picture ferris2 = new Picture("images/snowman.jpg");
+     Picture ferris3 = new Picture("images/snowman.jpg");
+     Picture ferris4 = new Picture("images/snowman.jpg");
+     Picture ferris5 = new Picture("images/snowman.jpg");
+               
 
      //apic.explore();
      ferris1.explore();
      
      //makes an array of pixels
-     Pixel[] pixels;
+     Pixel[] pixels1;
      //gets pixels from picture and assigns to pixels array
-     pixels = ferris1.getPixels();
+     pixels1 = ferris1.getPixels();
+     
+     Pixel[] pixels2;
+     pixels2 = ferris2.getPixels();
+     
+     Pixel[] pixels3;
+     pixels3 = ferris3.getPixels();
+     
+     Pixel[] pixels4;
+     pixels4 = ferris4.getPixels();
+     
+     Pixel[] pixels5;
+     pixels5 = ferris5.getPixels();
+     /*
     
      //how many pixels or how large array
     System.out.println("This is a large array"+pixels.length  );
 
 
     /**/
+    /*
         //access each index
-    System.out.println(pixels[17]);
+    System.out.println(pixels1[17]);
     //access each pixel
     Pixel spot = ferris1.getPixel(100,100);
     
     System.out.println(pixels[17].getColor());
     System.out.println(spot);
+    /**/
 /*
     pixels[17].setColor(Color.blue);
     spot.setColor(new Color(252,252,252));
@@ -118,23 +136,118 @@ final double  FACTOR = .5;
     //write/save a picture as a file
     
 
-    //ADJUST RED
-    for (Pixel pixelObj : pixels)
+    
+    
+//ADJUST RED
+    for (Pixel pixelObj : pixels1)
     {
 
         //get the redvalue
-        int value = pixelObj.getRed();
+        int value = pixelObj.getBlue();
         
         //decrease the red value by 50%
-        int newRed = (int)(value*0.25);
+        int newBlue = (int)(value*0.25);
 
         //set the red value of the current pixel to the new value
-        pixelObj.setRed(newRed);
+        pixelObj.setBlue(newBlue);
 
     }
     ferris1.explore();
-    ferris1.write("images/ferris1.jpg");
+    //ferris1.write("images/snowman.jpg");
 
     /**/
+    
+//NEGATE
+    for (Pixel pixelObj : pixels2)
+    {
+
+        //get the redvalue
+        int valueRed = pixelObj.getRed();
+        int valueBlue = pixelObj.getBlue();
+        int valueGreen = pixelObj.getGreen();
+
+        //decrease the red value by 50%
+        int Red = 255-valueRed;
+        int Blue = 255-valueBlue;
+        int Green = 255-valueGreen;
+
+
+        //set the red value of the current pixel to the new value
+        pixelObj.setRed(Red);
+        pixelObj.setBlue(Blue);
+        pixelObj.setGreen(Green);
+
+    }
+    ferris2.explore();
+    //ferris2.write("images/snowman.jpg");
+
+//GRAYSCALE
+
+    for (Pixel pixelObj : pixels3)
+    {
+
+        //get the redvalue
+        int valueRed = pixelObj.getRed();
+        int valueBlue = pixelObj.getBlue();
+        int valueGreen = pixelObj.getGreen();
+
+        //average values into grayscale
+        int grayScale = (int)((valueRed+valueBlue +valueGreen)/3);
+
+
+        //set each color to make gray
+        pixelObj.setRed(grayScale);
+        pixelObj.setBlue(grayScale);
+        pixelObj.setGreen(grayScale);
+
+    }
+    ferris3.explore();
+    //ferris3.write("images/snowman.jpg");
+    
+//LIGHTEN
+
+    for (Pixel pixelObj : pixels4)
+    {
+
+        //get the redvalue
+        int valueRed = pixelObj.getRed();
+        int valueBlue = pixelObj.getBlue();
+        int valueGreen = pixelObj.getGreen();
+
+        //average values into grayscale
+        int lighterRed = (int)(valueRed*1.3);
+        int lighterBlue = (int)(valueBlue*1.3);
+        int lighterGreen = (int)(valueGreen*1.3);
+
+
+        //set each color to make gray
+        pixelObj.setRed(lighterRed);
+        pixelObj.setBlue(lighterBlue);
+        pixelObj.setGreen(lighterGreen);
+
+    }
+    ferris4.explore();
+    //ferris4.write("images/snowman.jpg");
+    
+//SKYRED
+
+    for (Pixel pixelObj : pixels5)
+    {
+
+        //get the redvalue
+        int valueRed = pixelObj.getRed();
+        int valueBlue = pixelObj.getBlue(); 
+        int valueGreen = pixelObj.getGreen();
+
+        //average values into grayscale
+        if (Math.abs(85-valueRed) <= 10 && Math.abs(217-valueBlue) <= 10 && Math.abs(133-valueGreen) <=10){
+            pixelObj.setRed(200);
+            pixelObj.setBlue(60);
+            pixelObj.setGreen(60);
+        }
+
+    }
+    ferris5.explore();
+    //ferris5.write("images/snowman.jpg");
   }//main
 }//class
