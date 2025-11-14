@@ -17,21 +17,11 @@ public class SheparFaireyLab
     public static void main(String[] args)
     {
         
-         //opens selfie picture 
-        /*
-         String fileName = FileChooser.pickAFile();
-         Picture pictObj = new Picture("images/IMG_4739.jpeg");
-         pictObj.explore();
-         /**/
-         
-         //relative path
-         //change with selfie picture
-         
          /**
          * greyscale change
          */
         
-         Picture grey = new Picture("images/CROPPEDIMG.jpeg");
+         Picture grey = new Picture("images/IMG_4884.jpeg");
          
          Pixel[] greyy;
          greyy = grey.getPixels();
@@ -53,14 +43,15 @@ public class SheparFaireyLab
         }
         grey.explore();
         
+        //create 6 photos to be used for each new method/change
+        
          Picture me1= new Picture(grey);
          Picture me2 = new Picture(grey);
          Picture me3 = new Picture(grey);
          Picture me4 = new Picture(grey);
          Picture me5 = new Picture(grey);
          Picture me6 = new Picture(grey);
-
-
+        
 
          Pixel[] pixels1;
          pixels1 = me1.getPixels();
@@ -104,10 +95,9 @@ public class SheparFaireyLab
                 pixelObj.setColor(offWhite);
             }
         }
-        me1.explore();
-        me1.write("images/METHOD1.jpg");
-
-
+        //me1.explore();
+        //me1.write("images/METHOD1.jpg");
+        
          /**
           * method 2 change(balance)
           * 
@@ -142,8 +132,8 @@ public class SheparFaireyLab
                 pixelObj.setColor(offWhite);
             }
         }
-        me2.explore();
-        me2.write("images/METHOD2.jpg");
+        //me2.explore();
+        //me2.write("images/METHOD2.jpg");
 
          /**
           * custom color palette(1, 2, 3, 4, 5)
@@ -180,8 +170,8 @@ public class SheparFaireyLab
                 pixelObj.setColor(colour5);
             }
         }
-        me3.explore();
-        me3.write("images/SFtry1.jpg");
+        //me3.explore();
+        //me3.write("images/SFtry1.jpg");
         
         
         //attempt 2: Colours look nice, maybe adjust the bound of the second colour alittle to fix the face color
@@ -205,8 +195,8 @@ public class SheparFaireyLab
                 pixelObj.setColor(colour5);
             }
         }
-        me4.explore();
-        me4.write("images/SFtry2.jpg");
+        //me4.explore();
+        //me4.write("images/SFtry2.jpg");
 
         
         //attempt 3: shading looks a little better, but I feel like the blues and yellows blend a little too well. Increase contrast between the colours.
@@ -236,8 +226,8 @@ public class SheparFaireyLab
                 pixelObj.setColor(c5adj);
             }
         }
-        me5.explore();
-        me5.write("images/SFtry3.jpg");
+        //me5.explore();
+        //me5.write("images/SFtry3.jpg");
 
         //attempt 4: this looks good, but why is my face so yellow still? Reduce a little bit
         //also try and fix background purple/yellow colouring, better detail w grid
@@ -245,16 +235,16 @@ public class SheparFaireyLab
         for (Pixel pixelObj : pixels6)
         {
             redValues = pixelObj.getRed();
-            if (redValues < 52){
+            if (redValues < 70){
                 pixelObj.setColor(c1adj);
             }
-            else if (redValues < 90){
+            else if (redValues < 110){
                 pixelObj.setColor(c2adj);
             }
-            else if (redValues < 105){
+            else if (redValues < 175){
                 pixelObj.setColor(c3adj);
             }
-            else if (redValues < 130){
+            else if (redValues < 210){
                 pixelObj.setColor(c4adj);
             }
             else {
