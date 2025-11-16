@@ -95,8 +95,8 @@ public class SheparFaireyLab
                 pixelObj.setColor(offWhite);
             }
         }
-        //me1.explore();
-        //me1.write("images/METHOD1.jpg");
+        me1.explore();
+        me1.write("images/METHOD1.jpg");
         
          /**
           * method 2 change(balance)
@@ -132,13 +132,13 @@ public class SheparFaireyLab
                 pixelObj.setColor(offWhite);
             }
         }
-        //me2.explore();
-        //me2.write("images/METHOD2.jpg");
+        me2.explore();
+        me2.write("images/METHOD2.jpg");
 
          /**
           * custom color palette(1, 2, 3, 4, 5)
           * Since the two above are almost identical, we know that we have a wide range of grey scale from 0-255
-          * This makes sense because there's white light shining onto our photo
+          * This makes sense because there's white light shining onto our photo against the whiteboard with black hair
           * So it's beneficial for us to use an extra colour to help us manage that wider range
           */
          
@@ -170,11 +170,12 @@ public class SheparFaireyLab
                 pixelObj.setColor(colour5);
             }
         }
-        //me3.explore();
-        //me3.write("images/SFtry1.jpg");
+        me3.explore();
+        me3.write("images/SFtry1.jpg");
         
         
         //attempt 2: Colours look nice, maybe adjust the bound of the second colour alittle to fix the face color
+        //also it may help to change the colours in the future but I want to see if I can fix it before modifying RGBS
     
         for (Pixel pixelObj : pixels4)
         {
@@ -195,8 +196,8 @@ public class SheparFaireyLab
                 pixelObj.setColor(colour5);
             }
         }
-        //me4.explore();
-        //me4.write("images/SFtry2.jpg");
+        me4.explore();
+        me4.write("images/SFtry2.jpg");
 
         
         //attempt 3: shading looks a little better, but I feel like the blues and yellows blend a little too well. Increase contrast between the colours.
@@ -204,7 +205,7 @@ public class SheparFaireyLab
         
         Color c1adj = new Color(47, 39, 133);
         Color c2adj = new Color(73, 63, 177);
-        Color c3adj = new Color(100, 92, 178);
+        Color c3adj = new Color(192, 120, 108);
         Color c4adj = new Color(254, 161, 64);
         Color c5adj = new Color(254, 190, 64);
         for (Pixel pixelObj : pixels5)
@@ -226,11 +227,11 @@ public class SheparFaireyLab
                 pixelObj.setColor(c5adj);
             }
         }
-        //me5.explore();
-        //me5.write("images/SFtry3.jpg");
+        me5.explore();
+        me5.write("images/SFtry3.jpg");
 
-        //attempt 4: this looks good, but why is my face so yellow still? Reduce a little bit
-        //also try and fix background purple/yellow colouring, better detail w grid
+        //attempt 4: this looks good, but everything is still so yellow
+        //definitely want to bring out the floor pattern a little more and adjust coloration diff b/t clothes and bg
         
         for (Pixel pixelObj : pixels6)
         {
@@ -241,7 +242,7 @@ public class SheparFaireyLab
             else if (redValues < 110){
                 pixelObj.setColor(c2adj);
             }
-            else if (redValues < 175){
+            else if (redValues < 170){
                 pixelObj.setColor(c3adj);
             }
             else if (redValues < 210){
