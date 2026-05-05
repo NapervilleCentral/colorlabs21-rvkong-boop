@@ -36,10 +36,15 @@ public class TestPicture17
      Picture ferris3 = new Picture("images/snowman.jpg");
      Picture ferris4 = new Picture("images/snowman.jpg");
      Picture ferris5 = new Picture("images/snowman.jpg");
-               
 
+     Picture temple = new Picture("images\\temple.jpg");
+    temple.explore();
+    mirrorTemple(temple);
+    temple.explore();
+     
+     
      //apic.explore();
-     ferris1.explore();
+     //ferris1.explore();
      
      //makes an array of pixels
      Pixel[] pixels1;
@@ -152,7 +157,7 @@ final double  FACTOR = .5;
         pixelObj.setBlue(newBlue);
 
     }
-    ferris1.explore();
+    //ferris1.explore();
     //ferris1.write("images/snowman.jpg");
 
     /**/
@@ -178,7 +183,7 @@ final double  FACTOR = .5;
         pixelObj.setGreen(Green);
 
     }
-    ferris2.explore();
+   // ferris2.explore();
     //ferris2.write("images/snowman.jpg");
 
 //GRAYSCALE
@@ -201,7 +206,7 @@ final double  FACTOR = .5;
         pixelObj.setGreen(grayScale);
 
     }
-    ferris3.explore();
+//    ferris3.explore();
     //ferris3.write("images/snowman.jpg");
     
 //LIGHTEN
@@ -226,7 +231,7 @@ final double  FACTOR = .5;
         pixelObj.setGreen(lighterGreen);
 
     }
-    ferris4.explore();
+    //ferris4.explore();
     //ferris4.write("images/snowman.jpg");
     
 //SKYRED
@@ -247,7 +252,63 @@ final double  FACTOR = .5;
         }
 
     }
-    ferris5.explore();
+   // ferris5.explore();
     //ferris5.write("images/snowman.jpg");
   }//main
+  
+  
+  public static void mirrorVertical(Picture source)
+  {
+      int width = source.getWidth();
+      int midline = width/2;
+      Pixel leftPixel, rightPixel;
+      
+      for (int y = 0; y == source.getHeight(); y++)
+      {
+          for (int x = 0; x == midline; x++)
+          {
+              leftPixel = source.getPixel(x, y);
+              rightPixel = source.getPixel(width - 1- x, y);
+              rightPixel.setColor(leftPixel.getColor());
+      }
+      }
+    
+  }
+  
+  public static void copyToCanvas(Picture source, Picture target)
+  {
+      Pixel sourcePix = null;
+      Pixel targetPix = null;
+     
+      //loop through the columns (targetX is the starting point on the Canvas) sourceX += 2, smaller image skip pixels
+      //                                                                       sourceX += 0.5, larger image double pixels, cast as int in loop body
+      for (int sourceX = 0, targetX = 0; sourceX < source.getWidth(); sourceX++, targetX++)
+      {
+          //loop through the rows
+          for (int sourceY = 0, targetY = 0; sourceY < source.getHeight(); sourceY++, targetY++)
+          {
+              sourcePix = source.getPixel(sourceX, sourceY);
+              targetPix = target.getPixel(targetX, targetY);
+              targetPix.setColor(sourcePix.getColor());
+          }
+      }
+  }
+  
+  
+    public static void mirrorTemple(Picture source)
+    {
+      int midline = 275;
+      Pixel leftPixel = null;
+      Pixel rightPixel = null;
+      
+      for (int y = 28; y <= 98; y++)
+      {
+          for (int x = 10; x <= midline; x++)
+          {
+              leftPixel = source.getPixel(x, y);
+              rightPixel = source.getPixel(midline * 2 - x, y);
+              rightPixel.setColor(leftPixel.getColor());
+          }
+      }
+    }
 }//class
