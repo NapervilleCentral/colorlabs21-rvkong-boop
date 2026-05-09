@@ -20,17 +20,21 @@ public class Poster
          me.explore();
     }
     
-    public static void copyToCanvas(Picture source, Picture target)
+    public static void copyToCanvas(Picture source, Picture target, int startX, int startY)
+{
+    Pixel sourcePix = null;
+    Pixel targetPix = null;
+
+    for (int sourceX = 0; sourceX < source.getWidth(); sourceX++)
     {
-        Pixel sourcePix = null;
-        Pixel targetPix = null;
-     
-        //loop through the columns (targetX is the starting point on the Canvas) sourceX += 2, smaller image skip pixels
-        //                                                                       sourceX += 0.5, larger image double pixels, cast as int in loop body
-        for (int sourceX = 0, targetX = 0; sourceX < source.getWidth(); sourceX++, targetX++)
+        for (int sourceY = 0; sourceY < source.getHeight(); sourceY++)
         {
-            //loop through the rows
-            for (int sourceY = 0, targetY = 0; sourceY < source.getHeight(); sourceY++, targetY++)
+            int targetX = sourceX + startX;
+            int targetY = sourceY + startY;
+
+            // Only copy if the target coordinate is within the canvas bounds
+            if (targetX < target.getWidth() && targetY < target.getHeight()
+                && targetX >= 0 && targetY >= 0)
             {
                 sourcePix = source.getPixel(sourceX, sourceY);
                 targetPix = target.getPixel(targetX, targetY);
@@ -38,6 +42,7 @@ public class Poster
             }
         }
     }
+}
     
     public static void mirrorAcross(Picture source)
     {
