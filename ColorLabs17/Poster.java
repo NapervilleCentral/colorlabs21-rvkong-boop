@@ -12,29 +12,52 @@ public class Poster
 {
     public static void main (String[]args)
     {
-         Picture me = new Picture("images/IMG_4884.jpeg");
+         Picture me = new Picture("images/mysunshine.jpg");
+         Picture canvas = new Picture("images/640x480.jpg");
          
+         
+         
+         
+        copyToCanvas(me, canvas, 0, 0); 
+         
+         
+        upsideDown(me);
+        copyToCanvas(me, canvas, 0, 360);
+        
+        brighter(me);
+        copyToCanvas(me, canvas, 0, 720);
+        
+        copyToCanvas(me, canvas, 640, 0);
+        
+        copyToCanvas(me, canvas, 640, 360);
+        
+        copyToCanvas(me, canvas, 640, 720);
 
-         upsideDown(me);
-         
-         me.explore();
+        
+         canvas.explore();
     }
     
-    public static void copyToCanvas(Picture source, Picture target)
+    /**
+     * copy one pic to another pic/canvas
+     * add two int to params to place you want pic on the target
+     */
+    public static void copyToCanvas(Picture source, Picture canvas, int startX, int startY)
     {
         Pixel sourcePix = null;
-        Pixel targetPix = null;
-     
-        //loop through the columns (targetX is the starting point on the Canvas) sourceX += 2, smaller image skip pixels
-        //                                                                       sourceX += 0.5, larger image double pixels, cast as int in loop body
-        for (int sourceX = 0, targetX = 0; sourceX < source.getWidth(); sourceX++, targetX++)
+        Pixel canvasPix = null;
+      
+        for (int sourceX = 0; sourceX < source.getWidth(); sourceX++)
         {
-            //loop through the rows
-            for (int sourceY = 0, targetY = 0; sourceY < source.getHeight(); sourceY++, targetY++)
+            for (int sourceY = 0; sourceY < source.getHeight(); sourceY++)
             {
-                sourcePix = source.getPixel(sourceX, sourceY);
-                targetPix = target.getPixel(targetX, targetY);
-                targetPix.setColor(sourcePix.getColor());
+                if (sourceX + startX < canvas.getWidth() && sourceY + startY < canvas.getHeight())
+
+                {
+                    sourcePix = source.getPixel(sourceX, sourceY);
+                    canvasPix = canvas.getPixel(sourceX + startX, sourceY + startY);
+
+                    canvasPix.setColor(sourcePix.getColor());
+                }
             }
         }
     }
@@ -73,6 +96,28 @@ public class Poster
         }
     }   
     
-    
+    public static Picture brighter(Picture source)
+    {
+        Picture edited = new Picture(source.getWidth(), source.getHeight());
+      
+        for (int y = 0; y <= source.getHeight() - 1; y++)
+        {
+            for (int x = 0; x <= source.getWidth() - 1; x++)
+            {
+                Pixel psource = source.getPixel(x, y);
+                Pixel newP = edited.getPixel(x, y);
+                int redScale = psource.getRed();
+                int greenScale = psource.getGreen();
+                int blueScale = psource.getBlue();
+                
+                Color brightest = new Color (redScale + 50, greenScale + 50, blueScale + 50);
+                
+                
+                newP.setColor(brightest);
+            }
+        }
+        
+        return edited;
+    }   
     
 }
