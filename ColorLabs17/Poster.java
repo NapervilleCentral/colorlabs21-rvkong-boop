@@ -36,7 +36,7 @@ public class Poster
         me4 = greyScale(me4);
         copyToCanvas(me4, canvas, 640, 0);
         
-        me5 = recursive(me5);
+        recursive(me5);
         copyToCanvas(me5, canvas, 640, 360);
         
         copyToCanvas(me6, canvas, 640, 720);
@@ -174,10 +174,13 @@ public class Poster
                 Pixel psource = source.getPixel(x, y);
                 Pixel newP = edited.getPixel(x/2, y/2);
                 
-                newP.setRed(psource.getRed());
-                newP.setGreen(psource.getGreen());
-                newP.setBlue(psource.getBlue());
-
+                int redValue = psource.getRed();
+                int greenValue = psource.getGreen();
+                int blueValue = psource.getBlue();
+                
+                newP.setRed(redValue);
+                newP.setGreen(greenValue);
+                newP.setBlue(blueValue);
     
             }
         }
