@@ -12,26 +12,34 @@ public class Poster
 {
     public static void main (String[]args)
     {
-         Picture me = new Picture("images/mysunshine.jpg");
+         Picture me1 = new Picture("images/mysunshine.jpg");
+         Picture me2 = new Picture("images/mysunshine.jpg");
+         Picture me3 = new Picture("images/mysunshine.jpg");
+         Picture me4 = new Picture("images/mysunshine.jpg");
+         Picture me5 = new Picture("images/mysunshine.jpg");
+         Picture me6 = new Picture("images/mysunshine.jpg");
+
          Picture canvas = new Picture("images/640x480.jpg");
          
          
          
          
-        copyToCanvas(me, canvas, 0, 0); 
+        copyToCanvas(me1, canvas, 0, 0); 
          
          
-        upsideDown(me);
-        copyToCanvas(me, canvas, 0, 360);
+        upsideDown(me2);
+        copyToCanvas(me2, canvas, 0, 360);
         
-        brighter(me);
-        copyToCanvas(me, canvas, 0, 720);
+        me3 = negative(me3);
+        copyToCanvas(me3, canvas, 0, 720);
         
-        copyToCanvas(me, canvas, 640, 0);
+        me4 = greyScale(me4);
+        copyToCanvas(me4, canvas, 640, 0);
         
-        copyToCanvas(me, canvas, 640, 360);
+        me5 = recursive(me5);
+        copyToCanvas(me5, canvas, 640, 360);
         
-        copyToCanvas(me, canvas, 640, 720);
+        copyToCanvas(me6, canvas, 640, 720);
 
         
          canvas.explore();
@@ -49,6 +57,7 @@ public class Poster
         for (int sourceX = 0; sourceX < source.getWidth(); sourceX++)
         {
             for (int sourceY = 0; sourceY < source.getHeight(); sourceY++)
+    
             {
                 if (sourceX + startX < canvas.getWidth() && sourceY + startY < canvas.getHeight())
 
@@ -96,7 +105,7 @@ public class Poster
         }
     }   
     
-    public static Picture brighter(Picture source)
+    public static Picture negative(Picture source)
     {
         Picture edited = new Picture(source.getWidth(), source.getHeight());
       
@@ -106,18 +115,73 @@ public class Poster
             {
                 Pixel psource = source.getPixel(x, y);
                 Pixel newP = edited.getPixel(x, y);
+                
                 int redScale = psource.getRed();
                 int greenScale = psource.getGreen();
                 int blueScale = psource.getBlue();
                 
-                Color brightest = new Color (redScale + 50, greenScale + 50, blueScale + 50);
-                
-                
-                newP.setColor(brightest);
+                newP.setRed(255-redScale);
+                newP.setGreen(255-greenScale);
+                newP.setBlue(255-blueScale);
             }
         }
         
         return edited;
     }   
     
+    public static Picture greyScale (Picture source)
+    {
+        Picture edited = new Picture(source.getWidth(), source.getHeight());
+      
+        for (int y = 0; y <= source.getHeight() - 1; y++)
+        {
+            for (int x = 0; x <= source.getWidth() - 1; x++)
+            {
+                Pixel psource = source.getPixel(x, y);
+                Pixel newP = edited.getPixel(x, y); 
+                
+                //get the redvalue
+                int redValue = psource.getRed();
+                int greenValue = psource.getGreen();
+                int blueValue = psource.getBlue();
+    
+                int greyScale = (int)((redValue + greenValue + blueValue)/3);    
+                
+                newP.setRed(greyScale);
+                newP.setGreen(greyScale);
+                newP.setBlue(greyScale);
+
+            }
+        }
+        
+        return edited;
+           
+    }
+    
+    public static Picture recursive (Picture source)
+    {
+        Picture edited = new Picture(source.getWidth()/2, source.getHeight()/2);
+        
+        if (edited.getWidth() < 20 || edited.getHeight() < 10)
+        {
+            return source;
+        }
+        
+        for (int y = 0; y < source.getHeight(); y+=2)
+        {
+            for (int x = 0; x < source.getWidth(); x+=2)
+            {
+                Pixel psource = source.getPixel(x, y);
+                Pixel newP = edited.getPixel(x/2, y/2);
+                
+                newP.setRed(psource.getRed());
+                newP.setGreen(psource.getGreen());
+                newP.setBlue(psource.getBlue());
+
+    
+            }
+        }
+        
+        return recursive(edited);  
+    }
 }
