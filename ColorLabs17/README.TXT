@@ -4,6 +4,48 @@ Tell the reader (someone who does not know anything about this project)
 all he/she needs to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
+PROJECT TITLE: Collage Lab
+PURPOSE OF PROJECT: Modify an image's color, transformation, and recursion
+VERSION or DATE: 5/13/2026
+Author: Ryan Kong
+
+I really enjoyed your class this year: this was my first time learning Java and I really enjoyed the way you taught the concepts we had. 
+Thank you for being such a great teacher and I hope to see you around next year!
+-------------------------------------------------------------------------------------------------------------
+
+Original image was 640 x 360, Collage template was made to be 1280 x 1080 (2x3)
+
+First modifier: reflect over the horizontal midline of the image (middle left)
+Essentially loop so that the topleft pixel shifts to the bottom right of the image, then go to the next pixel and swap again
+
+Second modifier: negative (bottom left)
+Just take the original RGB value of each pixel and invert (255 - RGBvalue)
+
+Third modifier: greyscale (top right)
+Average the RGB values of the image, "brighter" pixels appear white and "darker" pixels appear black
+
+Fourth modifier: recursive (middle right)
+Set a base case with a minimum image size (so it doesn't infinitely recurse at 0x0 pixels)
+Then for each image, take every other pixel of the bigger image and transfer it into a smaller image (1/2) size and set the pixel color
+
+Fifth modifier: sepia (bottom right)
+Same color modifying properties, just found an online formula for creating sepia and modified it until I liked the color balance. 
+
+-------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 PROJECT TITLE: Sherphard Fairy
 PURPOSE OF PROJECT: Coloration using RGB values
 VERSION or DATE: 11/17/2025(edited due to save)
