@@ -26,23 +26,40 @@ public class Poster
          
         copyToCanvas(me1, canvas, 0, 0); 
          
+        me1.write("images/Collage1.jpg");
          
         upsideDown(me2);
         copyToCanvas(me2, canvas, 0, 360);
         
+        me2.write("images/Collage2.jpg");
+
         me3 = negative(me3);
         copyToCanvas(me3, canvas, 0, 720);
-        
+
+        me3.write("images/Collage3.jpg");
+
         me4 = greyScale(me4);
         copyToCanvas(me4, canvas, 640, 0);
-        
+
+        me4.write("images/Collage4.jpg");
+
         recursive(me5);
         copyToCanvas(me5, canvas, 640, 360);
         
+        me5.write("images/Collage5.jpg");
+
+        me6 = sepia(me6);
         copyToCanvas(me6, canvas, 640, 720);
+        
+        me6.write("images/Collage6.jpg");
+
 
         
          canvas.explore();
+         
+         
+        canvas.write("images/FINALCOLLAGE.jpg");
+
     }
     
     /**
@@ -140,7 +157,6 @@ public class Poster
                 Pixel psource = source.getPixel(x, y);
                 Pixel newP = edited.getPixel(x, y); 
                 
-                //get the redvalue
                 int redValue = psource.getRed();
                 int greenValue = psource.getGreen();
                 int blueValue = psource.getBlue();
@@ -158,33 +174,72 @@ public class Poster
            
     }
     
-    public static Picture recursive (Picture source)
+    public static Picture recursive(Picture source)
     {
         Picture edited = new Picture(source.getWidth()/2, source.getHeight()/2);
-        
+    
         if (edited.getWidth() < 20 || edited.getHeight() < 10)
         {
             return source;
         }
-        
-        for (int y = 0; y < source.getHeight(); y+=2)
+    
+        for (int y = 0; y < edited.getHeight(); y++)
         {
-            for (int x = 0; x < source.getWidth(); x+=2)
+            for (int x = 0; x< edited.getWidth(); x++)
+            {
+                Pixel psource = source.getPixel(x*2, y* 2);
+                Pixel newP = edited.getPixel(x, y);
+    
+                int redValue = psource.getRed();
+                int greenValue = psource.getGreen();
+                int blueValue = psource.getBlue();
+    
+                newP.setRed(redValue);
+                newP.setGreen(greenValue);
+                newP.setBlue(blueValue);
+            }
+        }
+    
+        Picture recursed = recursive(edited);
+    
+        for (int y = 0; y < recursed.getHeight(); y++)
+        {
+            for (int x = 0; x < recursed.getWidth(); x++)
+            {
+                source.getPixel(x, y).setColor(recursed.getPixel(x, y).getColor());
+            }
+        }
+    
+        return source;
+    }
+    
+    public static Picture sepia(Picture source)
+    {
+        Picture edited = new Picture(source.getWidth(), source.getHeight());
+      
+        for (int y = 0; y <= source.getHeight() - 1; y++)
+        {
+            for (int x = 0; x <= source.getWidth() - 1; x++)
             {
                 Pixel psource = source.getPixel(x, y);
-                Pixel newP = edited.getPixel(x/2, y/2);
+                Pixel newP = edited.getPixel(x, y); 
+                
                 
                 int redValue = psource.getRed();
                 int greenValue = psource.getGreen();
                 int blueValue = psource.getBlue();
-                
-                newP.setRed(redValue);
-                newP.setGreen(greenValue);
-                newP.setBlue(blueValue);
     
+                int sepiaRed= (int)(redValue *0.47+ greenValue * 0.83+ blueValue *0.22);
+                int sepiaGreen = (int)(redValue *0.30+ greenValue * 0.59+ blueValue *0.14);
+                int sepiaBlue= (int)(redValue *0.20+ greenValue * 0.41+ blueValue *0.10);
+                
+                newP.setRed(sepiaRed);
+                newP.setGreen(sepiaGreen);
+                newP.setBlue(sepiaBlue);
             }
         }
         
-        return recursive(edited);  
+        return edited;
+           
     }
 }

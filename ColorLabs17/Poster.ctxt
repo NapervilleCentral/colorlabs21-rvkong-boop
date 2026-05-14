@@ -16,4 +16,6 @@ comment6.params=source
 comment6.target=Picture\ greyScale(Picture)
 comment7.params=source
 comment7.target=Picture\ recursive(Picture)
-numComments=8
+comment8.params=source
+comment8.target=Picture\ sepia(Picture)
+numComments=9
