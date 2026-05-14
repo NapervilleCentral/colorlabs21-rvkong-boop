@@ -88,24 +88,6 @@ public class Poster
         }
     }
     
-    public static void mirrorAcross(Picture source)
-    {
-        int width = source.getWidth();
-        int midline = width/2;
-        Pixel leftPixel = null;
-        Pixel rightPixel = null;
-      
-        for (int y = 28; y <= 98; y++)
-        {
-            for (int x = 10; x <= midline; x++)
-            {
-                leftPixel = source.getPixel(x, y);
-                rightPixel = source.getPixel(midline * 2 - x, y);
-                rightPixel.setColor(leftPixel.getColor());
-            }
-        }
-    }
-    
     public static void upsideDown(Picture source)
     {
         Pixel leftPixel = null;
